@@ -7,7 +7,6 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePost;
 
-
 class PostController extends Controller
 {
     public function showCreateForm()
@@ -15,7 +14,7 @@ class PostController extends Controller
         return view('posts/create');
     }
 
-    public function create(Request $request)
+    public function create(CreatePost $request)
     {
         // Postモデルのインスタンスを作成する
         $post = new Post();
