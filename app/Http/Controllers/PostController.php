@@ -7,6 +7,9 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePost;
 
+// 追加
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostSent;
 
 class PostController extends Controller
 {
@@ -35,6 +38,10 @@ class PostController extends Controller
 
         // インスタンスの状態をデータベースに書き込む
         $post->save();
+
+        // 追加
+        $user = Auth::user();
+        Mail::to($user)->send(new PostSent($user, $post));
 
         //「投稿する」をクリックしたら投稿情報表示ページへリダイレクト        
         return redirect()->route('posts.detail', [
