@@ -55,10 +55,13 @@ class PostController extends Controller
     public function detail(Post $post)
     {
         return view('posts/detail', [
+            'post' => $post
+            /*
             'title' => $post->title,
             'content' => $post->content,
             'user_id' => $post->user_id,
             'image_url' => str_replace('public/', 'storage/', $post->image_url),
+            */
         ]);        
     }
 
